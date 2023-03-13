@@ -29,8 +29,8 @@ else
 	: "${NDK:="${HOME}/lib/android-ndk-r${TERMUX_NDK_VERSION}"}"
 fi
 
-# Termux packages configuration.
-TERMUX_APP_PACKAGE="com.termux"
+# Termux packages configuration. default package name for
+TERMUX_APP_PACKAGE="iot.manob.console"
 TERMUX_BASE_DIR="/data/data/${TERMUX_APP_PACKAGE}/files"
 TERMUX_CACHE_DIR="/data/data/${TERMUX_APP_PACKAGE}/cache"
 TERMUX_ANDROID_HOME="${TERMUX_BASE_DIR}/home"
