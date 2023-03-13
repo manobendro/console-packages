@@ -402,7 +402,7 @@ main() {
 
 		# Core utilities.
 		PACKAGES+=("bash")
-		PACKAGES+=("bzip2")
+		PACKAGES+=("libbz2") # changed from bzip2
 		if ! ${BOOTSTRAP_ANDROID10_COMPATIBLE}; then
 			PACKAGES+=("command-not-found")
 		else
@@ -439,6 +439,11 @@ main() {
 		PACKAGES+=("unzip")
 
 		# Handle additional packages.
+		ONLY_BASH=()
+
+		# Only bash and apt
+		ONLY_BASH+=("bash")
+
 		for add_pkg in "${ADDITIONAL_PACKAGES[@]}"; do
 			if [[ " ${PACKAGES[*]} " != *" $add_pkg "* ]]; then
 				PACKAGES+=("$add_pkg")
@@ -446,8 +451,8 @@ main() {
 		done
 		unset add_pkg
 
-		# Build packages.
-		for package_name in "${PACKAGES[@]}"; do
+		# Build packages. PACKAGES
+		for package_name in "${ONLY_BASH[@]}"; do
 			set +e
 			build_package "$package_arch" "$package_name" || return $?
 			set -e
